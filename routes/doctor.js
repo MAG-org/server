@@ -1,11 +1,9 @@
 const express = require('express');
+const router = express.Router();
 const Doctor = require('../controllers/doctor');
-const router = express.Router()
-
-router.post('/seed', Doctor.seedData)
 
 //Get All Doctor
-router.get("/alldocters", Doctor.showDoctor);
+router.get("/", Doctor.showDoctor);
 
 //Get All Doctor By ID
 router.get('/:id', Doctor.showDoctorById)
