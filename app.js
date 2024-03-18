@@ -7,6 +7,7 @@ const app = express()
 const cors = require('cors');
 const db = require('./config/db_config');
 const router = require('./routes');
+const errorHandler = require('./middlewares/errorHandler');
 
 //To Enable CORS
 app.use(cors())
@@ -18,6 +19,9 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 //To Handle Server Routing
-app.use(router)
+app.use('/api', router)
+
+//Error Handler
+app.use(errorHandler)
 
 module.exports = app
