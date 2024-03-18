@@ -4,4 +4,10 @@ const router = express.Router()
 
 router.post('/seed', Doctor.seedData)
 
-module.exports = router
+//Get All Doctor
+router.get("/alldocters", Doctor.showDoctor);
+
+//Get All Doctor By ID
+router.get('/:id', Doctor.showDoctorById)
+
+module.exports = router;
