@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="qFPO5aQ_F3M6cRcLHpT_" name="Page-1">
-        <mxGraphModel dx="1519" dy="473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="993" dy="323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -246,7 +246,7 @@
                 <mxCell id="269" value="View List Docter" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="375" y="2300" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="290" style="edgeStyle=none;hachureGap=4;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.457;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" edge="1" parent="1" source="272" target="284">
+                <mxCell id="290" style="edgeStyle=none;hachureGap=4;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.457;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" parent="1" source="272" target="284" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="272" value="If appoinment&amp;nbsp; has been &quot;finish&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -261,22 +261,22 @@
                 <mxCell id="278" value="View Detail Docter" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2380" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="283" value="History medical" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="283" value="History medical" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="670" y="1060" width="150" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="284" value="Add Patient Medical History" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="284" value="Add Patient Medical History" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-305" y="2870" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="285" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;solusi, nama penyakit,&amp;nbsp;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;fontSize=20;fontFamily=Architects Daughter;" vertex="1" parent="1">
+                <mxCell id="285" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;solusi, nama penyakit,&amp;nbsp;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;fontSize=20;fontFamily=Architects Daughter;" parent="1" vertex="1">
                     <mxGeometry x="150" y="2451" width="130" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="286" value="If appoinment&amp;nbsp; &quot;activ&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="286" value="If appoinment&amp;nbsp; &quot;activ&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-320" y="2496" width="130" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="291" value="Dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="291" value="Dashboard" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-320" y="480" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="292" value="Detail Dokter" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="292" value="Detail Dokter" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="520" y="1060" width="120" height="40" as="geometry"/>
                 </mxCell>
             </root>

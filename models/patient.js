@@ -2,24 +2,30 @@ const db = require("../config/db_config");
 const { hashData } = require("../helpers/bcrypt");
 
 class PatientModel {
-    static getCollection(){
-        return db.collection('Patients')
-    }
+  static getCollection() {
+    return db.collection("Patients");
+  }
 
-    static async create(args){
-        const {password} = args
+  static async create(args) {
+    const { password } = args;
 
-        return await PatientModel.getCollection().insertOne({
-            ...args,
-            password: hashData(password)
-        })
-    }
+    return await PatientModel.getCollection().insertOne({
+      ...args,
+      password: hashData(password),
+    });
+  }
 
-    static async findByEmail(email){
-        return await PatientModel.getCollection().findOne({
-            email: email
-        })
-    }
+  static async findByEmail(email) {
+    return await PatientModel.getCollection().findOne({
+      email: email,
+    });
+  }
+
+  static async findById(id) {
+    return await PatientModel.getCollection().findOne({
+      _id: id,
+    });
+  }
 }
 
 module.exports = PatientModel
