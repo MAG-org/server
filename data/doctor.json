@@ -1,0 +1,78 @@
+[
+    {
+        "name": "dr. Sarah Smith",
+        "imgUrl": "img.png",
+        "specialize": "Penyakit Dalam",
+        "schedule": [
+            {
+                "day": "Monday",
+                "start": 8,
+                "end": 12
+            },
+            {
+                "day": "Wednesday",
+                "start": 15,
+                "end": 18
+            },
+            {
+                "day": "Friday",
+                "start": 15,
+                "end": 18
+            }
+        ]
+    },
+    {
+        "name": "dr. John Doe",
+        "imgUrl": "img.png",
+        "specialize": "Dokter Umum",
+        "schedule": [
+            {
+                "day": "Monday",
+                "start": 8,
+                "end": 12
+            },
+            {
+                "day": "Tuesday",
+                "start": 8,
+                "end": 12
+            },
+            {
+                "day": "Wednesday",
+                "start": 15,
+                "end": 18
+            },
+            {
+                "day": "Friday",
+                "start": 15,
+                "end": 18
+            }
+        ]
+    },
+    {
+        "name": "dr. Alexander Xavier",
+        "imgUrl": "img.png",
+        "specialize": "Dokter Umum",
+        "schedule": [
+            {
+                "day": "Monday",
+                "start": 13,
+                "end": 18
+            },
+            {
+                "day": "Tuesday",
+                "start": 13,
+                "end": 18
+            },
+            {
+                "day": "Wednesday",
+                "start": 13,
+                "end": 18
+            },
+            {
+                "day": "Friday",
+                "start": 13,
+                "end": 18
+            }
+        ]
+    }
+]
