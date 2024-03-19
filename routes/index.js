@@ -4,7 +4,6 @@ const patient = require('./patient')
 const doctor = require("./doctor");
 const appointment = require("./appointment");
 
-
 router.get('/', (req, res) => {
     res.send('Connection Success, Hello World!')
 })
@@ -12,7 +11,7 @@ router.get('/', (req, res) => {
 //Route for Patient Endpoints
 router.use('/patient', patient)
 
-//Route for Docter Endpoints
+//Route for Doctor Endpoints
 router.use('/doctor', doctor)
 
 //Route for Docter Endpoints

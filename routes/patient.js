@@ -1,6 +1,6 @@
 const express = require('express');
-const Patient = require('../controllers/patient');
 const router = express.Router()
+const Patient = require('../controllers/patient');
 
 //Patient Register
 router.post('/register', Patient.register)
@@ -9,8 +9,7 @@ router.post('/register', Patient.register)
 router.post('/login', Patient.login)
 
 //Get All Patient
-router.get('/allpatient', Patient.showPatient)
-
+router.get('/', Patient.showPatient)
 
 //Get All Patient By ID
 router.get('/:id', Patient.showPatientById)
