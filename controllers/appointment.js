@@ -34,57 +34,6 @@ class Appointment {
     }
   }
 
-  static async InitiateMidTrans(req, res, next) {
-    try {
-      const { id } = req.params;
-
-      const userId = req.user;
-
-      let snap = new midtransClient.Snap({
-        isProduction: false,
-        serverKey: process.env.API_KEY_serverKey,
-        clientKey: process.env.API_KEY_clientKey,
-      });
-
-      const orderId = Math.random().toString() + "-" +  id;
-
-      const trxAmount = 20000; //data.price;
-
-      const parameter = {
-        transaction_details: {
-          order_id: orderId,
-          gross_amount: trxAmount,
-        },
-        credit_card: {
-          secure: true,
-        },
-        customer_details: {
-          email: req.user.email,
-          first_name: req.user.userName,
-        },
-      };
-
-      const transaction = await snap.createTransaction(parameter);
-      console.log(transaction);
-      let transactionToken = transaction.token;
-      console.log(transactionToken);
-
-      await Transaction.create({
-        userId: userId.id,
-        gameId: data.id,
-        totalAmount: trxAmount,
-        orderId: orderId,
-        transactionToken: transactionToken,
-        transactionDate: new Date(),
-      });
-
-      res.json({ message: "Transaction created", transactionToken, orderId });
-    } catch (error) {
-      console.log(error);
-      next(error);
-    }
-  }
-
   static async addAppointment(req, res, next) {
     try {
       const { doctorId, date, time } = req.body;
@@ -117,16 +66,6 @@ class Appointment {
   static async editAppointmentStatus(req, res, next) {
     try {
       const { id } = req.params;
-      // const { doctor, pasien_detail, date, status } = req.body;
-
-      // if (!doctor || !pasien_detail || !date || !status) {
-      //   throw {
-      //     name: "Invalid Input",
-      //     message: "Field cannot be empty",
-      //     status: 400,
-      //   };
-      // }
-
       const newAppointment = await AppointmentModel.editstatus(id);
       console.log(newAppointment);
 

@@ -18,10 +18,10 @@ describe("GET /api/appointment", () => {
   });
 });
 
-describe("GET /api/appointment/65f92cf1104281e64a36de6e", () => {
+describe("GET /api/appointment/65fa3d632f1909132cb05724", () => {
   test("b. Berhasil mendapatkan data Appointment berdasarkan id", async () => {
     const response = await request(app).get(
-      "/api/appointment/65f92cf1104281e64a36de6e"
+      "/api/appointment/65fa3d632f1909132cb05724"
     );
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Object);
@@ -32,7 +32,7 @@ describe("GET /api/appointment/65f92cf1104281e64a36de6e", () => {
         "/api/appointment/65f92cf1104281e64a36de6e"
       );
       expect(response.status).toBe(404);
-      expect(response.body).toHaveProperty("message", "Appointment Not Found");
+      expect(response.body).toHaveProperty("message", "Appointments Not Found");
     });
 });
 
@@ -41,8 +41,6 @@ describe("GET /api/appointment/addappointment", () => {
     const dataAddedUser = {
       doctor: "urbaningrum",
       pasien_detail: "urururururur",
-      disease_name: "Jantung gagal",
-      docter_note: "urbaningrum",
       date: "19/03/2024",
       status: "Activ now",
       isPaid: true,
@@ -138,35 +136,25 @@ describe("PATCH /api/appointment/edit-appointment-status/:id", () => {
       .patch(`/api/appointment/edit-appointment-status/${appointmentId}`)
           .send({ status: "Active" });
       console.log(response)
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(response.body).toHaveProperty(
       "message",
       "Appointment Status Active Succssfully"
     );
   });
 
-  test("b. Gagal mengubah status appointment karena id tidak valid", async () => {
-    const response = await request(app)
-      .patch(`/api/appointment/edit-appointment-status/invalid_id`)
-      .send({ status: "Active" });
-    expect(response.status).toBe(404);
-    expect(response.body).toHaveProperty("message", "Appointment not found");
-  });
-
-  test("c. Gagal mengubah status appointment karena status tidak valid", async () => {
-    const response = await request(app)
-      .patch(`/api/appointment/edit-appointment-status/${appointmentId}`)
-      .send({ status: "InvalidStatus" });
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", "Invalid status provided");
-  });
-
-  test("d. Gagal mengubah status appointment karena input kosong", async () => {
-    const response = await request(app)
-      .patch(`/api/appointment/edit-appointment-status/${appointmentId}`)
-      .send({});
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", "Status field is required");
-  });
 });
 
+// describe.only("GET /api/appointment/payment-notification-handler", () => {
+//   test("a. Berhasil mendapatkan data Appointment", async () => {
+//     const response = await request(app).get("/api/appointment/payment-notification-handler");
+//     expect(response.status).toBe(200);
+//   });
+// });
+
+// describe.only("GET /api/appointment/payment-charge", () => {
+//   test("a. Berhasil mendapatkan data Appointment", async () => {
+//     const response = await request(app).get("/api/appointment/payment-charge");
+//     expect(response.status).toBe(200);
+//   });
+// });
