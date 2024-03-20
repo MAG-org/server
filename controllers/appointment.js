@@ -2,18 +2,6 @@ const AppointmentModel = require("../models/appointment");
 const midtransClient = require("midtrans-client");
 
 class Appointment {
-  static async createAppointment(req, res, next){
-    try {
-      const {doctorId} = req.body
-
-      res.status(200).json({message: "Success"})
-
-    } catch (error) {
-      console.log(error);
-      next(error)
-    }
-  }
-
   static async showAppointment(req, res, next) {
     try {
       const appointment = await AppointmentModel.findAll();
@@ -117,7 +105,7 @@ class Appointment {
       console.log(newAppointment);
 
       const appointment = await AppointmentModel.create(newAppointment);
-      // console.log(appointment);
+      console.log(appointment);
 
       res.status(201).json({ message: "Appointment Added Succssfully" });
     } catch (error) {
