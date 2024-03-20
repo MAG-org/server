@@ -76,6 +76,7 @@ class Patient {
     static async showPatient(req, res, next) {
         try {
             const patients = await PatientModel.findAll()
+            
             res.status(200).json(patients);
 
         } catch (error) {

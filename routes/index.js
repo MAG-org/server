@@ -22,3 +22,4 @@ router.use('/appointment', appointment)
 router.use('/medical-record', medical_records)
 
 module.exports = router
+

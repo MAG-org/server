@@ -14,6 +14,17 @@ class AppointmentModel {
     });
   }
 
+  static async destroy(query) {
+    try {
+      const result = await AppointmentModel.getCollection().deleteOne(query);
+      return result.deletedCount; // Mengembalikan jumlah dokumen yang dihapus (biasanya 1)
+    } catch (error) {
+      throw new Error(
+        `Error occurred while deleting document: ${error.message}`
+      );
+    }
+  }
+
   static async editstatus(id) {
     return await AppointmentModel.getCollection().updateOne(
       {
@@ -22,7 +33,7 @@ class AppointmentModel {
         // date: args.date,
         _id: new ObjectId(String(id)),
       },
-      { $set: { status: "Paid", isPaid: true }}
+      { $set: { status: "Paid", isPaid: true } }
     );
   }
 

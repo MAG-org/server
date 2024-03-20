@@ -23,7 +23,7 @@ class Doctor {
                 throw {name:"Not Found", message:"Doctor Not Found", status: 404}
             }
             
-            res.status(200).json(patient);
+            res.status(200).json(doctor);
         } catch (error) {
             console.log(error);
             next(error);
