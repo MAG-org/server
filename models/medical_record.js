@@ -31,6 +31,37 @@ class Medical_records_Model {
       _id: new ObjectId(String(id)),
     });
   }
+
+  static async findAll() {
+    return await Medical_records_Model.getCollection()
+      .aggregate([
+        {
+          $lookup: {
+            from: "Doctors",
+            localField: "doctorId",
+            foreignField: "_id",
+            as: "DoctorDetail",
+          },
+        },
+        {
+          $lookup: {
+            from: "Patients",
+            localField: "patientId",
+            foreignField: "_id",
+            as: "PatientDetails",
+          },
+        },
+        {
+          $project: {
+            PatientDetails: {
+              password: 0,
+              IDNumber: 0,
+            },
+          },
+        },
+      ])
+      .toArray();
+  }
 }
 
 module.exports = Medical_records_Model;

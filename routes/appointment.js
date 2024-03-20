@@ -2,6 +2,7 @@
 const express = require("express");
 const Appointment = require("../controllers/appointment");
 const authentication = require("../middlewares/authentication"); 
+const AppointmentModel = require("../models/appointment")
 const router = express.Router();
 
 //Get All Appointment
@@ -10,11 +11,32 @@ router.get("/", Appointment.showAppointment);
 //Get All Appointment By ID
 router.get("/:id", Appointment.showAppointmentById);
 
-router.post("/payment-notification-handler", (req, res) => {
-  console.log(req.body);
+// router.post("/payment-notification-handler", (req, res) => {
+//   console.log(req.body);
 
-  //jika settelement update status appointment dan payment
-  res.status(200).json(req.body);
+//   //jika settelement update status appointment dan payment
+//   res.status(200).json(req.body);
+// });
+
+router.post("/payment-notification-handler", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { order_id, transaction_status } = req.body;
+
+    if (transaction_status !== "settlement") {
+      throw { name: "Payment Error", message: "Payment Failed", status: 401 };
+    }
+
+    const [_, id] = order_id.split("-");
+
+    const appointment = await AppointmentModel.editstatus(id);
+
+    console.log(appointment);
+    res.status(200).json(appointment);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 });
 
 router.post("/payment-charge/:id", (req, res) => {
