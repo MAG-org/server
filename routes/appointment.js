@@ -9,15 +9,14 @@ router.get("/", Appointment.showAppointment);
 //Get All Appointment By ID
 router.get("/:id", Appointment.showAppointmentById);
 
-router.post("/payment/:id", Appointment.InitiateMidTrans);
-
 router.post("/payment-notification-handler", (req, res) => {
   console.log(req.body);
+
   //jika settelement update status appointment dan payment
   res.status(200).json(req.body);
 });
 
-router.post("/payment-charge", (req, res) => {
+router.post("/payment-charge/:id", (req, res) => {
     const { id } = req.params;
   const fetch = require("node-fetch");
   const url = "https://api.sandbox.midtrans.com/v2/charge";
@@ -25,7 +24,7 @@ router.post("/payment-charge", (req, res) => {
     method: "POST",
     headers: {
       "X-Append-Notification":
-        "https://3372-139-228-111-126.ngrok-free.app/api/appointment/payment-notification-handler",
+        "https://f374-139-228-111-126.ngrok-free.app/api/appointment/payment-notification-handler",
       "content-type": "application/json",
       authorization:
         "Basic U0ItTWlkLXNlcnZlci1IZlV2MjJHWElWbTBRZ284c0hWZ0hsTk86VTBJdFRXbGtMWE5sY25abGNpMUlabFYyTWpKSFdFbFdiVEJSWjI4NGMwaFdaMGhzVGs4Ng==",

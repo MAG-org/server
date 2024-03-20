@@ -7,6 +7,19 @@ class Medical_records_Model {
     return db.collection("Medical_records");
   }
 
+  static async destroy(query) {
+    try {
+      const result = await Medical_records_Model.getCollection().deleteOne(
+        query
+      );
+      return result.deletedCount; // Mengembalikan jumlah dokumen yang dihapus (biasanya 1)
+    } catch (error) {
+      throw new Error(
+        `Error occurred while deleting document: ${error.message}`
+      );
+    }
+  }
+
   static async create(args) {
     return await Medical_records_Model.getCollection().insertOne({
       ...args,

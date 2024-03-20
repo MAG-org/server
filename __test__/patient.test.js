@@ -90,7 +90,7 @@ describe("POST /api/patient/register", () => {
   test("a. Berhasilkan menambahkan user", async () => {
     const dataAddedUser = {
       name: "shihrui",
-      email: "staffkuy1@mail.com",
+      email: "tambahdisini12347@mail.com",
       password: "staff",
       birthDate: "19/03/2000",
       phoneNumber: "08212121",
@@ -316,14 +316,14 @@ describe("GET /api/patient/65f7ba4d3ccf3caf7a85926f", () => {
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Object);
   });
-});
 
-describe("GET /api/patient/65f7ba4d3ccf3caf7a85926g", () => {
-  test("c. Berhasil mendapatkan data Pasien berdasarkan id", async () => {
+  test("c. Gagal mendapatkan data Pasien berdasarkan id", async () => {
     const response = await request(app).get(
-      "/api/patient/65f7ba4d3ccf3caf7a85926g"
+      "/api/patient/65f7ba4d3ccf3caf7a85925a"
     );
+    console.log(response, ">>>>>>>>>>>>>>.ini patient")
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty("message", "Patient Not Found");
   });
 });
+
