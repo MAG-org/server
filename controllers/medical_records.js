@@ -24,9 +24,9 @@ class Medical_records {
 
   static async addMedicalRecords(req, res, next) {
     try {
-      const { id_doctor,id_patient, disease_name, docter_note, date } = req.body;
+      const { appointmentId, disease_name, docter_note} = req.body;
 
-      if (!id_doctor || !id_patient || !disease_name || !docter_note ||!date ) {
+      if (!appointmentId || !disease_name || !docter_note) {
         throw {
           name: "Invalid Input",
           message: "Field cannot be empty",

@@ -56,7 +56,7 @@ class Appointment {
       const appointment = await AppointmentModel.create(newAppointment);
       console.log(appointment);
 
-      res.status(201).json({ message: "Appointment Added Succssfully" });
+      res.status(201).json({ message: "Appointment Added Succssfully", _id: appointment.insertedId });
     } catch (error) {
       console.log(error);
       next(error);
