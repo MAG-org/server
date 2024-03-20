@@ -99,9 +99,9 @@ class Appointment {
 
   static async addAppointment(req, res, next) {
     try {
-      const { doctor, pasien_detail, date } = req.body;
+      const { doctorId, date, time } = req.body;
 
-      if (!doctor || !pasien_detail || !date) {
+      if (!doctorId || !time || !date) {
         throw {
           name: "Invalid Input",
           message: "Field cannot be empty",
@@ -109,8 +109,15 @@ class Appointment {
         };
       }
 
-      const newAppointment = await AppointmentModel.create(req.body);
+      const newAppointment = {
+        ...req.body,
+        patientId: req.patient._id
+      }
+
       console.log(newAppointment);
+
+      const appointment = await AppointmentModel.create(newAppointment);
+      // console.log(appointment);
 
       res.status(201).json({ message: "Appointment Added Succssfully" });
     } catch (error) {

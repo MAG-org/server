@@ -73,7 +73,10 @@ class Patient {
                 name: findPatient.name,
             });
 
-            res.status(200).json({ accessToken: token });
+            console.log(token);
+
+            res.status(200).json({accessToken: token});
+
         } catch (error) {
             console.log(error);
             next(error);

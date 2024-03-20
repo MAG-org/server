@@ -1,6 +1,7 @@
 // <<<<<<< HEAD
 const express = require("express");
 const Appointment = require("../controllers/appointment");
+const authentication = require("../middlewares/authentication"); 
 const router = express.Router();
 
 //Get All Appointment
@@ -52,7 +53,7 @@ router.post("/payment-charge", (req, res) => {
 });
 
 //Add Appointment
-router.post("/addappointment", Appointment.addAppointment);
+router.post("/addappointment", authentication, Appointment.addAppointment);
 
 //Add Appointment
 router.patch("/edit-appointment-status/:id", Appointment.editAppointmentStatus);
