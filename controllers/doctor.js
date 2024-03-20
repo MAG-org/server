@@ -24,7 +24,6 @@ class Doctor {
             }
             
             res.status(200).json(doctor);
-            
         } catch (error) {
             console.log(error);
             next(error);

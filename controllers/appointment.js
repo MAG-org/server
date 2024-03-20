@@ -50,8 +50,6 @@ class Appointment {
     try {
       const { id } = req.params;
 
-      const data = await Game.findByPk(id);
-
       const userId = req.user;
 
       let snap = new midtransClient.Snap({
@@ -60,9 +58,9 @@ class Appointment {
         clientKey: process.env.API_KEY_clientKey,
       });
 
-      const orderId = Math.random().toString();
+      const orderId = Math.random().toString() + "-" +  id;
 
-      const trxAmount = data.price;
+      const trxAmount = 20000; //data.price;
 
       const parameter = {
         transaction_details: {
@@ -98,6 +96,53 @@ class Appointment {
       next(error);
     }
   }
+
+  static async addAppointment(req, res, next) {
+    try {
+      const { doctor, pasien_detail, date } = req.body;
+
+      if (!doctor || !pasien_detail || !date) {
+        throw {
+          name: "Invalid Input",
+          message: "Field cannot be empty",
+          status: 400,
+        };
+      }
+
+      const newAppointment = await AppointmentModel.create(req.body);
+      console.log(newAppointment);
+
+      res.status(201).json({ message: "Appointment Added Succssfully" });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async editAppointmentStatus(req, res, next) {
+    try {
+      const { id } = req.params;
+      // const { doctor, pasien_detail, date, status } = req.body;
+
+      // if (!doctor || !pasien_detail || !date || !status) {
+      //   throw {
+      //     name: "Invalid Input",
+      //     message: "Field cannot be empty",
+      //     status: 400,
+      //   };
+      // }
+
+      const newAppointment = await AppointmentModel.editstatus(id);
+      console.log(newAppointment);
+
+      res.status(201).json({ message: "Appointment Status Active Succssfully" });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  
 }
 
 module.exports = Appointment;
