@@ -7,8 +7,11 @@ class AppointmentModel {
   }
 
   static async create(args) {
+    const {doctorId} = args
+    
     return await AppointmentModel.getCollection().insertOne({
       ...args,
+      doctorId: new ObjectId(String(doctorId)),
       status: "Pending",
       isPaid: false,
     });
@@ -38,13 +41,9 @@ class AppointmentModel {
   }
 
   static async findAll() {
-    return await AppointmentModel.aggregate(
+    return await AppointmentModel.getCollection().aggregate(
       [
         {
-          '$match': {
-            '_id': new ObjectId('65fa927b3203bf441f0d46fc')
-          }
-        }, {
           '$lookup': {
             'from': 'Doctors', 
             'localField': 'doctorId', 
