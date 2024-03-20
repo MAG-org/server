@@ -4,12 +4,15 @@ const PatientModel = require("../models/patient")
 const authentication = async (req,res,next) => {
     try {
         let accessToken = req.headers.authorization
+        console.log(accessToken, "<<< init");
 
         if(!accessToken) {
             throw {name: "Invalid Token", message: "Unauthenticated", status: 401}
         }
 
         let [bearer, token] = accessToken.split(" ")
+
+        console.log(token, "<<< ini token");
 
         if(bearer !== "Bearer"){
             throw {name: "Invalid Token", message: "Unauthenticated", status: 401}

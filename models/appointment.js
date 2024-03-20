@@ -38,7 +38,36 @@ class AppointmentModel {
   }
 
   static async findAll() {
-    return await AppointmentModel.getCollection().find({}).toArray();
+    return await AppointmentModel.aggregate(
+      [
+        {
+          '$match': {
+            '_id': new ObjectId('65fa927b3203bf441f0d46fc')
+          }
+        }, {
+          '$lookup': {
+            'from': 'Doctors', 
+            'localField': 'doctorId', 
+            'foreignField': '_id', 
+            'as': 'DoctorDetail'
+          }
+        }, {
+          '$lookup': {
+            'from': 'Patients', 
+            'localField': 'patientId', 
+            'foreignField': '_id', 
+            'as': 'PatientDetails'
+          }
+        }, {
+          '$project': {
+            'PatientDetails': {
+              'password': 0, 
+              'IDNumber': 0
+            }
+          }
+        }
+      ]
+    ).toArray();
   }
 
   static async findById(id) {

@@ -1,15 +1,13 @@
 const { compareData } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const PatientModel = require("../models/patient");
-const db = require("../config/db_config");
-const ObjectId = require("mongodb").ObjectId;
 
 class Patient {
     static async register(req, res, next) {
         try {
-            const {name, email, password, birthDate, phoneNumber, IDNumber, gender, address} = req.body;
+            const {name, email, password, passwordConfirm, birthDate, phoneNumber, IDNumber, gender, address} = req.body;
 
-            if (!name || !email || !password || !birthDate || !phoneNumber || !IDNumber || !gender || !address) {
+            if (!name || !email || !password || !passwordConfirm || !birthDate || !phoneNumber || !IDNumber || !gender || !address) {
                 throw {
                     name: "Invalid Input",
                     message: "Field cannot be empty",
@@ -27,8 +25,17 @@ class Patient {
                 };
             }
 
-            const newPatient = await PatientModel.create(req.body);
-            console.log(newPatient);
+            if(password !== passwordConfirm){
+                throw {
+                    name: "Invalid Input",
+                    message: "Password Does Not Match",
+                    status: 400,
+                }
+            }
+
+            const newPatient = {name, email, password, birthDate, phoneNumber, IDNumber, gender, address}
+            const result = await PatientModel.create(newPatient);
+            console.log(result);
 
             res.status(201).json({ message: "Patient Added Succssfully" });
 
@@ -66,7 +73,10 @@ class Patient {
                 name: findPatient.name,
             });
 
-            res.status(200).json({ accessToken: token });
+            console.log(token);
+
+            res.status(200).json({accessToken: token});
+
         } catch (error) {
             console.log(error);
             next(error);

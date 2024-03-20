@@ -2,6 +2,18 @@ const AppointmentModel = require("../models/appointment");
 const midtransClient = require("midtrans-client");
 
 class Appointment {
+  static async createAppointment(req, res, next){
+    try {
+      const {doctorId} = req.body
+
+      res.status(200).json({message: "Success"})
+
+    } catch (error) {
+      console.log(error);
+      next(error)
+    }
+  }
+
   static async showAppointment(req, res, next) {
     try {
       const appointment = await AppointmentModel.findAll();
@@ -36,9 +48,9 @@ class Appointment {
 
   static async addAppointment(req, res, next) {
     try {
-      const { doctor, pasien_detail, date } = req.body;
+      const { doctorId, date, time } = req.body;
 
-      if (!doctor || !pasien_detail || !date) {
+      if (!doctorId || !time || !date) {
         throw {
           name: "Invalid Input",
           message: "Field cannot be empty",
@@ -46,8 +58,15 @@ class Appointment {
         };
       }
 
-      const newAppointment = await AppointmentModel.create(req.body);
+      const newAppointment = {
+        ...req.body,
+        patientId: req.patient._id
+      }
+
       console.log(newAppointment);
+
+      const appointment = await AppointmentModel.create(newAppointment);
+      // console.log(appointment);
 
       res.status(201).json({ message: "Appointment Added Succssfully" });
     } catch (error) {
