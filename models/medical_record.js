@@ -21,8 +21,10 @@ class Medical_records_Model {
   }
 
   static async create(args) {
+    const {appointmentId} = args
     return await Medical_records_Model.getCollection().insertOne({
       ...args,
+      appointmentId: new ObjectId(String(appointmentId))
     });
   }
 

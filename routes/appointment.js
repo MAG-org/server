@@ -11,13 +11,6 @@ router.get("/", Appointment.showAppointment);
 //Get All Appointment By ID
 router.get("/:id", Appointment.showAppointmentById);
 
-// router.post("/payment-notification-handler", (req, res) => {
-//   console.log(req.body);
-
-//   //jika settelement update status appointment dan payment
-//   res.status(200).json(req.body);
-// });
-
 router.post("/payment-notification-handler", async (req, res, next) => {
   try {
     console.log(req.body);
