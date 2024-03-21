@@ -88,6 +88,7 @@ class Appointment {
     }
   }
 
+
   static async showAppointmentByPatient(req, res, next) {
     try {
       console.log(req.patient._id)
