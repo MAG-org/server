@@ -40,7 +40,8 @@ class DoctorModel {
 
     return await DoctorModel.getCollection().find({$and: [
       {name: {$regex: name, $options: 'i'}},
-      {specialize: {$regex: specialize, $options: 'i'}}
+      {specialize: {$regex: specialize, $options: 'i'}},
+      {"schedule.day": {$regex: schedule, $options: 'i'}}
   ]}).toArray();
   }
 }

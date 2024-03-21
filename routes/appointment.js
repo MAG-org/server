@@ -56,7 +56,7 @@ router.post("/payment-charge/:id", (req, res) => {
     method: "POST",
     headers: {
       "X-Append-Notification":
-        "https://f374-139-228-111-126.ngrok-free.app/api/appointment/payment-notification-handler",
+        "https://9925-139-228-111-126.ngrok-free.app/api/appointment/payment-notification-handler",
       "content-type": "application/json",
       authorization:
         "Basic U0ItTWlkLXNlcnZlci1IZlV2MjJHWElWbTBRZ284c0hWZ0hsTk86VTBJdFRXbGtMWE5sY25abGNpMUlabFYyTWpKSFdFbFdiVEJSWjI4NGMwaFdaMGhzVGs4Ng==",
