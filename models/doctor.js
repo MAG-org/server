@@ -34,6 +34,15 @@ class DoctorModel {
       _id: new ObjectId(String(id)),
     });
   }
+
+  static async search(args) {
+    const {name, specialize, schedule} = args
+
+    return await DoctorModel.getCollection().find({$and: [
+      {name: {$regex: name, $options: 'i'}},
+      {specialize: {$regex: specialize, $options: 'i'}}
+  ]}).toArray();
+  }
 }
 
 module.exports = DoctorModel;

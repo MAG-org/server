@@ -29,6 +29,20 @@ class Doctor {
             next(error);
         }
     }
+
+    static async searchDoctor(req, res, next) {
+        try {
+            console.log(req.query);
+
+            const doctors = await DoctorModel.search(req.query)
+
+            res.status(200).json(doctors);
+            
+        } catch (error) {
+            console.log(error);
+            next(error)
+        }
+    }
 }
 
 module.exports = Doctor;

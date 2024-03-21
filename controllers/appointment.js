@@ -82,6 +82,26 @@ class Appointment {
       next(error);
     }
   }
+// <<<<<<< HEAD
+// =======
+
+  static async showAppointmentByPatient(req, res, next) {
+    try {
+      console.log(req.patient._id)
+      
+      const appointment = await AppointmentModel.findByPatientId(req.patient._id)
+      console.log(appointment);
+      
+      res.status(200).json(appointment)
+      
+    } catch (error) {
+      console.log(error);
+      next(error)
+    }
+  }
+
+  
+// >>>>>>> 11080f44c4266114f7abd50928942e6278bc1420
 }
 
 module.exports = Appointment;

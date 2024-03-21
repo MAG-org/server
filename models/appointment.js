@@ -40,39 +40,72 @@ class AppointmentModel {
     );
   }
 
-  // static async findAll() {
-  //   return await AppointmentModel.getCollection().aggregate(
-  //     [
-  //       {
-  //         '$lookup': {
-  //           'from': 'Doctors', 
-  //           'localField': 'doctorId', 
-  //           'foreignField': '_id', 
-  //           'as': 'DoctorDetail'
-  //         }
-  //       }, {
-  //         '$lookup': {
-  //           'from': 'Patients', 
-  //           'localField': 'patientId', 
-  //           'foreignField': '_id', 
-  //           'as': 'PatientDetails'
-  //         }
-  //       }, {
-  //         '$project': {
-  //           'PatientDetails': {
-  //             'password': 0, 
-  //             'IDNumber': 0
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   ).toArray();
-  // }
+  static async findAll() {
+    return await AppointmentModel.getCollection().aggregate(
+      [
+        {
+          '$lookup': {
+            'from': 'Doctors', 
+            'localField': 'doctorId', 
+            'foreignField': '_id', 
+            'as': 'DoctorDetail'
+          }
+        }, {
+          '$lookup': {
+            'from': 'Patients', 
+            'localField': 'patientId', 
+            'foreignField': '_id', 
+            'as': 'PatientDetails'
+          }
+        }, {
+          '$project': {
+            'PatientDetails': {
+              'password': 0, 
+              'IDNumber': 0
+            }
+          }
+        }
+      ]
+    ).toArray();
+  }
 
   static async findById(id) {
     return await AppointmentModel.getCollection().findOne({
       _id: new ObjectId(String(id)),
     });
+  }
+
+  static async findByPatientId(id){
+    return await AppointmentModel.getCollection().aggregate(
+      [
+        {
+          '$match': {
+            'patientId': new ObjectId(String(id))
+          }
+        }, {
+          '$lookup': {
+            'from': 'Doctors', 
+            'localField': 'doctorId', 
+            'foreignField': '_id', 
+            'as': 'DoctorDetail'
+          }
+        }, {
+          '$lookup': {
+            'from': 'Patients', 
+            'localField': 'patientId', 
+            'foreignField': '_id', 
+            'as': 'PatientDetails'
+          }
+        }, {
+          '$project': {
+            'PatientDetails': {
+              'IDNumber': 0, 
+              'password': 0
+            }
+          }
+        }
+      ]
+    ).toArray();
   }
 }
 
