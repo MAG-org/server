@@ -8,9 +8,6 @@ const router = express.Router();
 //Get All Appointment
 router.get("/", Appointment.showAppointment);
 
-//Get All Appointment By ID
-router.get("/:id", Appointment.showAppointmentById);
-
 router.post("/payment-notification-handler", async (req, res, next) => {
     try {
         console.log(req.body);
@@ -90,5 +87,10 @@ router.post("/addappointment", authentication, Appointment.addAppointment);
 
 //Add Appointment
 router.patch("/edit-appointment-status/:id", Appointment.editAppointmentStatus);
+
+router.get("/patient", authentication, Appointment.showAppointmentByPatient )
+
+//Get All Appointment By ID
+router.get("/:id", Appointment.showAppointmentById);
 
 module.exports = router;

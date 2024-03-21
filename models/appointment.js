@@ -74,6 +74,39 @@ class AppointmentModel {
       _id: new ObjectId(String(id)),
     });
   }
+
+  static async findByPatientId(id){
+    return await AppointmentModel.getCollection().aggregate(
+      [
+        {
+          '$match': {
+            'patientId': new ObjectId(String(id))
+          }
+        }, {
+          '$lookup': {
+            'from': 'Doctors', 
+            'localField': 'doctorId', 
+            'foreignField': '_id', 
+            'as': 'DoctorDetail'
+          }
+        }, {
+          '$lookup': {
+            'from': 'Patients', 
+            'localField': 'patientId', 
+            'foreignField': '_id', 
+            'as': 'PatientDetails'
+          }
+        }, {
+          '$project': {
+            'PatientDetails': {
+              'IDNumber': 0, 
+              'password': 0
+            }
+          }
+        }
+      ]
+    ).toArray();
+  }
 }
 
 module.exports = AppointmentModel;

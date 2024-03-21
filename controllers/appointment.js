@@ -76,6 +76,21 @@ class Appointment {
     }
   }
 
+  static async showAppointmentByPatient(req, res, next) {
+    try {
+      console.log(req.patient._id)
+      
+      const appointment = await AppointmentModel.findByPatientId(req.patient._id)
+      console.log(appointment);
+      
+      res.status(200).json(appointment)
+      
+    } catch (error) {
+      console.log(error);
+      next(error)
+    }
+  }
+
   
 }
 
