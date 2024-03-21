@@ -90,7 +90,7 @@ describe("POST /api/patient/register", () => {
   test("a. Berhasilkan menambahkan user", async () => {
     const dataAddedUser = {
       name: "shihrui",
-      email: "tambahdisini12347@mail.com",
+      email: "tambahdisini12397@mail.com",
       password: "staff",
       birthDate: "19/03/2000",
       phoneNumber: "08212121",

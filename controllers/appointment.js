@@ -48,15 +48,20 @@ class Appointment {
 
       const newAppointment = {
         ...req.body,
-        patientId: req.patient._id
-      }
+        patientId: req.patient._id,
+      };
 
       console.log(newAppointment);
 
       const appointment = await AppointmentModel.create(newAppointment);
       console.log(appointment);
 
-      res.status(201).json({ message: "Appointment Added Succssfully", _id: appointment.insertedId });
+      res
+        .status(201)
+        .json({
+          message: "Appointment Added Succssfully",
+          _id: appointment.insertedId,
+        });
     } catch (error) {
       console.log(error);
       next(error);
@@ -65,11 +70,18 @@ class Appointment {
 
   static async editAppointmentStatus(req, res, next) {
     try {
-      const { id } = req.params;
-      const newAppointment = await AppointmentModel.editstatus(id);
+      const { status, id } = req.body;
+
+      if(!status || !id){
+        throw {name: "Bad Request", message: "Field Cannot be empty", status: 400}
+      }
+
+      const newAppointment = await AppointmentModel.editstatus(status, id);
       console.log(newAppointment);
 
-      res.status(201).json({ message: "Appointment Status Active Succssfully" });
+      res
+        .status(201)
+        .json({ message: "Appointment Status Active Succssfully" });
     } catch (error) {
       console.log(error);
       next(error);
@@ -90,8 +102,6 @@ class Appointment {
       next(error)
     }
   }
-
-  
 }
 
 module.exports = Appointment;

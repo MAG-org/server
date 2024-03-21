@@ -145,16 +145,16 @@ describe("PATCH /api/appointment/edit-appointment-status/:id", () => {
 
 });
 
-// describe.only("GET /api/appointment/payment-notification-handler", () => {
-//   test("a. Berhasil mendapatkan data Appointment", async () => {
-//     const response = await request(app).get("/api/appointment/payment-notification-handler");
-//     expect(response.status).toBe(200);
-//   });
-// });
+describe("GET /api/appointment/payment-notification-handler", () => {
+  test("a. Berhasil mendapatkan data Appointment", async () => {
+    const response = await request(app).get("/api/appointment/payment-notification-handler");
+    expect(response.status).toBe(200);
+  });
+});
 
-// describe.only("GET /api/appointment/payment-charge", () => {
-//   test("a. Berhasil mendapatkan data Appointment", async () => {
-//     const response = await request(app).get("/api/appointment/payment-charge");
-//     expect(response.status).toBe(200);
-//   });
-// });
+describe("GET /api/appointment/payment-charge", () => {
+  test("a. Berhasil mendapatkan data Appointment", async () => {
+    const response = await request(app).get("/api/appointment/payment-charge");
+    expect(response.status).toBe(200);
+  });
+});

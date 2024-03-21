@@ -28,7 +28,7 @@ class AppointmentModel {
     }
   }
 
-  static async editstatus(id) {
+  static async editstatus(status ,id) {
     return await AppointmentModel.getCollection().updateOne(
       {
         // doctor: args.doctor,
@@ -36,7 +36,7 @@ class AppointmentModel {
         // date: args.date,
         _id: new ObjectId(String(id)),
       },
-      { $set: { status: "Paid", isPaid: true } }
+      { $set: { status, isPaid: true } }
     );
   }
 

@@ -98,6 +98,7 @@ class Patient {
     static async showPatientById(req, res, next) {
         try {
             const { id } = req.params;
+            console.log(id, "<<<");
             const patient = await PatientModel.findById(id);
             
             if (!patient) {
