@@ -24,9 +24,9 @@ class Medical_records {
 
   static async addMedicalRecords(req, res, next) {
     try {
-      const { appointmentId, disease_name, docter_note} = req.body;
+      const { appointmentId, patientId, disease_name, docter_note} = req.body;
 
-      if (!appointmentId || !disease_name || !docter_note) {
+      if (!appointmentId || !patientId || !disease_name || !docter_note) {
         throw {
           name: "Invalid Input",
           message: "Field cannot be empty",
@@ -42,6 +42,24 @@ class Medical_records {
       console.log(error);
       next(error);
     }
+  }
+
+  static async showByPatient(req, res, next){
+    try {
+      const { patientId } = req.params;
+      console.log(patientId, "<<<");
+      const record = await Medical_records_Model.findByPatientId(patientId);
+      
+      if (!record) {
+          throw {name:"Not Found", message:"Patient Not Found", status: 404}
+      }
+      
+      res.status(200).json(record);
+      
+  } catch (error) {
+      console.log(error);
+      next(error);
+  }
   }
 }
 

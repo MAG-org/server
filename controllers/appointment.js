@@ -70,8 +70,13 @@ class Appointment {
 
   static async editAppointmentStatus(req, res, next) {
     try {
-      const { id } = req.params;
-      const newAppointment = await AppointmentModel.editstatus(id);
+      const { status, id } = req.body;
+
+      if(!status || !id){
+        throw {name: "Bad Request", message: "Field Cannot be empty", status: 400}
+      }
+
+      const newAppointment = await AppointmentModel.editstatus(status, id);
       console.log(newAppointment);
 
       res
@@ -82,8 +87,7 @@ class Appointment {
       next(error);
     }
   }
-// <<<<<<< HEAD
-// =======
+
 
   static async showAppointmentByPatient(req, res, next) {
     try {
@@ -99,9 +103,6 @@ class Appointment {
       next(error)
     }
   }
-
-  
-// >>>>>>> 11080f44c4266114f7abd50928942e6278bc1420
 }
 
 module.exports = Appointment;

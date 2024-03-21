@@ -19,7 +19,7 @@ router.post("/payment-notification-handler", async (req, res, next) => {
 
     const [_, id] = order_id.split("-");
 
-    const appointment = await AppointmentModel.editstatus(id);
+    const appointment = await AppointmentModel.editstatus("Paid",id);
 
     console.log(appointment);
     res.status(200).json(appointment);

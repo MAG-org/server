@@ -41,6 +41,30 @@ class PatientModel {
     return await PatientModel.getCollection().findOne({
       _id: new ObjectId(String(id)),
     });
+
+    // console.log(id);
+
+    // return await PatientModel.getCollection().aggregate([
+    //     {
+    //       '$match': {
+    //         'patientId': new ObjectId(String(id))
+    //       }
+    //     }, {
+    //       '$lookup': {
+    //         'from': 'Patients', 
+    //         'localField': 'patientId', 
+    //         'foreignField': '_id', 
+    //         'as': 'PatientDetails'
+    //       }
+    //     }, {
+    //       '$lookup': {
+    //         'from': 'Appointments', 
+    //         'localField': 'appointmentId', 
+    //         'foreignField': '_id', 
+    //         'as': 'AppointmentDetails'
+    //       }
+    //     }
+    //   ]).toArray()
   }
 }
 
